@@ -6,10 +6,12 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"time"
 
 	"gopkg.in/ldap.v2"
 )
 
+// LDAPClient -
 type LDAPClient struct {
 	Attributes         []string
 	Base               string
@@ -25,6 +27,7 @@ type LDAPClient struct {
 	UseSSL             bool
 	SkipTLS            bool
 	ClientCertificates []tls.Certificate // Adding client certificates
+	Timeout            time.Duration
 }
 
 // Connect connects to the ldap backend.
@@ -61,6 +64,7 @@ func (lc *LDAPClient) Connect() error {
 		}
 
 		lc.Conn = l
+		l.SetTimeout(lc.Timeout)
 	}
 	return nil
 }
