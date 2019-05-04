@@ -3,7 +3,7 @@ package ldap_test
 import (
 	"log"
 
-	"github.com/jtblin/go-ldap-client"
+	"github.com/c0sco/go-ldap-client"
 )
 
 // ExampleLDAPClient_Authenticate shows how a typical application can verify a login attempt
