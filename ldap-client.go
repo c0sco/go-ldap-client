@@ -88,6 +88,7 @@ func (lc *LDAPClient) Authenticate(username, password string) (bool, map[string]
 	if lc.BindDN != "" && lc.BindPassword != "" {
 		err := lc.Conn.Bind(lc.BindDN, lc.BindPassword)
 		if err != nil {
+			lc.Close()
 			return false, nil, err
 		}
 	}
